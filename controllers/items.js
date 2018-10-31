@@ -2,6 +2,14 @@ const express = require('express')
 const router = express.Router()
 const Item = require('../models/Item')
 
+// create an item
+router.post('/', (req, res) => {
+  Item.create({
+    name: req.body.name
+  }).then(() => {
+    res.redirect('/')
+  })
+})
 // delete an item
 router.delete('/:id', (req, res) => {
   Item.findOneAndRemove({ _id: req.params.id }).then(() => {
