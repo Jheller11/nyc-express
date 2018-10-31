@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
   res.send('hello')
 })
 
+// fix later to deploy
 app.set('port', 3001)
 
 app.listen(app.get('port'), () => {
