@@ -15,6 +15,14 @@ const itemSchema = new mongoose.Schema({
   },
   location: {
     type: String
+  },
+  addedBy: {
+    type: String,
+    required: true
+  },
+  likes: {
+    type: Array,
+    default: []
   }
 })
 
