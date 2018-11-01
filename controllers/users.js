@@ -10,4 +10,20 @@ router.get('/:id', (req, res) => {
   })
 })
 
+router.post(
+  '/login',
+  passport.authenticate('local-login', {
+    successRedirect: '/users/:id',
+    failureRedirect: '/users/login'
+  })
+)
+
+router.post(
+  '/signup',
+  passport.authenticate('local-signup', {
+    successRedirect: '/users/:id',
+    failureRedirect: '/users/signup'
+  })
+)
+
 module.exports = router
