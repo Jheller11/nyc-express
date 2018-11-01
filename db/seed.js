@@ -1,19 +1,16 @@
 const mongoose = require('./connection')
-const seeds = require('./seeds.json')
+const seeds = require('./item_seeds.json')
+const userSeeds = require('./user_seeds.json')
 
 // require models
 const Item = require('../models/Item')
 const User = require('../models/User')
 
-Item.remove({})
+console.log(mongoose, seeds)
+
+Item.deleteMany({})
   .then(() => {
-    User.remove({})
-  })
-  .then(() => {
-    User.insertMany(seeds)
-  })
-  .then(() => {
-    Item.insertMany(seeds)
+    Item.collection.insertMany(seeds)
   })
   .then(() => {
     console.log('completed')
