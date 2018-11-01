@@ -1,6 +1,38 @@
 [
   {
-    "name": "jeff",
-    "addedBy": "jeff"
+    "name": "Deli",
+    "completed": false,
+    "location": "Water St.",
+    "addedBy": "Jeff",
+    "likes": ["one", "two"],
+    "link": "http://the-best-of-new-york-food-new-york.sites.tablehero.com/",
+    "type": "restaurant"
+  },
+  {
+    "name": "Pizza",
+    "completed": true,
+    "location": "Fulton St.",
+    "addedBy": "Liz",
+    "likes": ["one", "two", "three"],
+    "link": "http://lipizzany.com/",
+    "type": "restaurant"
+  },
+  {
+    "name": "Central Park",
+    "completed": false,
+    "location": "Central Park",
+    "addedBy": "Liz",
+    "likes": ["one", "two", "three", "four"],
+    "link": "http://lipizzany.com/",
+    "type": "park"
+  },
+  {
+    "name": "Statue of Liberty",
+    "completed": false,
+    "location": "Hudson River",
+    "addedBy": "Jeff",
+    "likes": [],
+    "link": "",
+    "type": "activity"
   }
 ]

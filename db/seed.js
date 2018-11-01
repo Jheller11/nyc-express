@@ -6,8 +6,6 @@ const userSeeds = require('./user_seeds.json')
 const Item = require('../models/Item')
 const User = require('../models/User')
 
-console.log(mongoose, seeds)
-
 Item.deleteMany({})
   .then(() => {
     Item.collection.insertMany(seeds)

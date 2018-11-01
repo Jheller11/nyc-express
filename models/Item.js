@@ -26,6 +26,10 @@ const itemSchema = new mongoose.Schema({
   },
   link: {
     type: String
+  },
+  type: {
+    type: String,
+    required: true
   }
 })
 
