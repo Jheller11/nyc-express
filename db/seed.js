@@ -19,3 +19,6 @@ Item.remove({})
     console.log('completed')
     mongoose.connection.close()
   })
+  .catch(err => {
+    console.log(err)
+  })

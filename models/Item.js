@@ -23,6 +23,9 @@ const itemSchema = new mongoose.Schema({
   likes: {
     type: Array,
     default: []
+  },
+  link: {
+    type: String
   }
 })
 
