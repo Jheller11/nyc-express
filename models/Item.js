@@ -30,6 +30,10 @@ const itemSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true
+  },
+  private: {
+    type: Boolean,
+    required: true
   }
 })
 

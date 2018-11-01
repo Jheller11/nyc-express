@@ -6,7 +6,8 @@
     "addedBy": "Jeff",
     "likes": ["one", "two"],
     "link": "http://the-best-of-new-york-food-new-york.sites.tablehero.com/",
-    "type": "restaurant"
+    "type": "restaurant",
+    "private": false
   },
   {
     "name": "Pizza",
@@ -15,7 +16,8 @@
     "addedBy": "Liz",
     "likes": ["one", "two", "three"],
     "link": "http://lipizzany.com/",
-    "type": "restaurant"
+    "type": "restaurant",
+    "private": false
   },
   {
     "name": "Central Park",
@@ -24,7 +26,8 @@
     "addedBy": "Liz",
     "likes": ["one", "two", "three", "four"],
     "link": "http://lipizzany.com/",
-    "type": "park"
+    "type": "park",
+    "private": false
   },
   {
     "name": "Statue of Liberty",
@@ -33,6 +36,7 @@
     "addedBy": "Jeff",
     "likes": [],
     "link": "",
-    "type": "activity"
+    "type": "activity",
+    "private": false
   }
 ]
