@@ -73,7 +73,7 @@ module.exports = passport => {
             return done(null, false)
           }
           console.log('here')
-          return done(null, user)
+          return done(null, user, { message: 'you did it' })
         })
       }
     )

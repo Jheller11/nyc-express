@@ -20,11 +20,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
-app.use((req, res, next) => {
-  res.locals.user = req.user
-  next()
-})
-
 // controllers
 app.use('/items', itemController)
 app.use('/users', userController)
