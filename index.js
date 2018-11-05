@@ -22,6 +22,14 @@ app.use(passport.session())
 app.use('/items', itemController)
 app.use('/users', userController)
 
+app.get('/error', (req, res) => {
+  res.send('error')
+})
+
+app.get('/success', (req, res) => {
+  res.send('success')
+})
+
 app.get('/', (req, res) => {
   res.send('hello')
 })

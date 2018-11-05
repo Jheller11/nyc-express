@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const User = require('../models/User')
-require('../config/passport')
+require('../config/passport')(passport)
 
 router.get('/:id', (req, res) => {
   User.findOne({ _id: req.params.id }).then(user => {
@@ -13,16 +13,16 @@ router.get('/:id', (req, res) => {
 router.post(
   '/login',
   passport.authenticate('local-login', {
-    successRedirect: '/users/:id',
-    failureRedirect: '/users/login'
+    successRedirect: '/success',
+    failureRedirect: '/error'
   })
 )
 
 router.post(
   '/signup',
   passport.authenticate('local-signup', {
-    successRedirect: '/users/:id',
-    failureRedirect: '/users/signup'
+    successRedirect: '/success',
+    failureRedirect: '/error'
   })
 )
 

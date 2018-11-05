@@ -19,7 +19,7 @@ router.delete('/:id', (req, res) => {
 
 // edit an item
 router.put('/:id', (req, res) => {
-  Item.findOneAndUpdate({ _id: req.params.id }, req.body).then(item => {
+  Item.findOneAndUpdate({ _id: req.params.id }, req.body).then(() => {
     res.redirect('/')
   })
 })

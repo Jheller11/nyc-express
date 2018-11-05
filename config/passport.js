@@ -22,30 +22,26 @@ module.exports = passport => {
         passReqToCallback: true
       },
       (req, email, password, done) => {
+        console.log('here')
         process.nextTick(() => {
-          User.findOne({ 'local.email': email }, (err, user) => {
-            if (err) return done(err)
-            if (user) {
-              return done(
-                null,
-                false,
-                req.flash('signupMessage', 'That email is already taken.')
-              )
+          User.findOne({ email: email }, (err, user) => {
+            if (err) {
+              console.log(err)
+              return done(err)
             }
-            if (!email || !req.body.displayName || !password) {
-              return done(
-                null,
-                false,
-                req.flash(
-                  'signupMessage',
-                  'All fields are required. Please try again.'
-                )
-              )
+            if (user) {
+              console.log(user + 'There is a user')
+              return done(null, false)
+            }
+            if (!email || !password) {
+              console.log(email, password, 'One of these is missing')
+              return done(null, false)
             } else {
               var newUser = new User()
-              newUser.local.email = email
-              newUser.local.password = newUser.generateHash(password)
-              newUser.local.displayName = req.body.displayName
+              newUser.email = email
+              newUser.password = newUser.generateHash(password)
+              newUser.name.first = req.body.firstname
+              newUser.name.last = req.body.lastname
               console.log(newUser)
               newUser.save(err => {
                 if (err) throw err
@@ -66,26 +62,18 @@ module.exports = passport => {
         passReqToCallback: true
       },
       (req, email, password, done) => {
-        User.findOne({ 'local.email': email }, (err, user) => {
+        User.findOne({ email: email }, (err, user) => {
           if (err) {
             console.log(err)
             return done(err)
           }
           if (!user) {
             console.log('user not found')
-            return done(
-              null,
-              false,
-              req.flash('loginMessage', 'User not found.')
-            )
+            return done(null, false)
           }
           if (!user.validPassword(password, user)) {
             console.log('inval password')
-            return done(
-              null,
-              false,
-              req.flash('loginMessage', 'Password is not correct.')
-            )
+            return done(null, false)
           }
           return done(null, user)
         })
