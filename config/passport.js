@@ -62,20 +62,17 @@ module.exports = passport => {
         passReqToCallback: true
       },
       (req, email, password, done) => {
-        console.log(req.body)
         User.findOne({ email: email }, (err, user) => {
           if (err) {
-            console.log(err)
             return done(err)
           }
           if (!user) {
-            console.log('user not found')
             return done(null, false)
           }
           if (!user.validPassword(password, user)) {
-            console.log('inval password')
             return done(null, false)
           }
+          console.log('here')
           return done(null, user)
         })
       }

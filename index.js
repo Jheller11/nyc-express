@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('passport')
 const itemController = require('./controllers/items')
 const userController = require('./controllers/users')
+const flash = require('connect-flash')
 
 // config middleware
 app.use(cors())
@@ -17,18 +18,16 @@ app.use(methodOverride('_method'))
 app.use(session({ secret: 'j' }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())
+
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
 
 // controllers
 app.use('/items', itemController)
 app.use('/users', userController)
-
-app.get('/error', (req, res) => {
-  res.send('error')
-})
-
-app.get('/success', (req, res) => {
-  res.send('success')
-})
 
 app.get('/', (req, res) => {
   res.send('hello')

@@ -12,17 +12,23 @@ router.get('/:id', (req, res) => {
 
 router.post(
   '/login',
-  passport.authenticate('local-login', {
-    successRedirect: '/success',
-    failureRedirect: '/error'
-  })
+  (req, res, next) => {
+    console.log(req.body)
+    next()
+  },
+  passport.authenticate('local-login'),
+  (req, res) => {
+    console.log(req.user)
+    res.send('done')
+  }
 )
 
 router.post(
   '/signup',
   passport.authenticate('local-signup', {
-    successRedirect: '/success',
-    failureRedirect: '/error'
+    successRedirect: '/items',
+    failureRedirect: '/items',
+    failureFlash: true
   })
 )
 
