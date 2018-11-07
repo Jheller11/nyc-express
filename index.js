@@ -6,19 +6,29 @@ const session = require('express-session')
 const passport = require('passport')
 const itemController = require('./controllers/items')
 const userController = require('./controllers/users')
-const flash = require('connect-flash')
+const cookieParser = require('cookie-parser')
+require('./config/passport')(passport)
 
 // config middleware
 app.use(cors())
 app.use(parser.json())
 app.use(parser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(cookieParser())
 
 // passport
 app.use(session({ secret: 'j' }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(flash())
+
+app.use((req, res, next) => {
+  console.log('Session:')
+  console.log(req.session)
+  console.log('req.body:')
+  console.log(req.body)
+  console.log(req.isAuthenticated())
+  next()
+})
 
 // controllers
 app.use('/items', itemController)

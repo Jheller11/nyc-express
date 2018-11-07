@@ -10,9 +10,21 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.post('/login', passport.authenticate('local-login'), (req, res) => {
-  console.log(req.user, req.session.passport.user)
-  res.send('done')
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local-login', (err, user, info) => {
+    if (err) {
+      return next(err)
+    }
+    if (!user) {
+      return res.send(info)
+    }
+    req.logIn(user, err => {
+      if (err) {
+        return next(err)
+      }
+      return res.send(user._id)
+    })
+  })(req, res, next)
 })
 
 router.post(

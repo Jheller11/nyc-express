@@ -4,10 +4,14 @@ const User = require('../models/User')
 
 module.exports = passport => {
   passport.serializeUser((user, done) => {
+    console.log('serialize')
+    console.log(user)
     done(null, user.id)
   })
 
   passport.deserializeUser((id, done) => {
+    console.log('deserialize')
+    console.log(id)
     User.findById(id, (err, user) => {
       done(err, user)
     })
@@ -22,7 +26,6 @@ module.exports = passport => {
         passReqToCallback: true
       },
       (req, email, password, done) => {
-        console.log('here')
         process.nextTick(() => {
           User.findOne({ email: email }, (err, user) => {
             if (err) {
@@ -67,13 +70,14 @@ module.exports = passport => {
             return done(err)
           }
           if (!user) {
-            return done(null, false)
+            return done(null, false, { message: 'No user found' })
           }
           if (!user.validPassword(password, user)) {
-            return done(null, false)
+            return done(null, false, {
+              message: 'Invalid password. Please try again.'
+            })
           }
-          console.log('here')
-          return done(null, user, { message: 'you did it' })
+          return done(null, user, { message: 'Success' })
         })
       }
     )

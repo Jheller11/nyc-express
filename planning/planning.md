@@ -18,3 +18,7 @@ Codepen for developing list style: https://codepen.io/jheller11/pen/WYePve?edito
 6. Yelp
 
 7. Read data from link when creating new item?
+
+8. finalize authentication, verify user, restrict routes
+
+9. Expand test coverage
