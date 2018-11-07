@@ -13,8 +13,10 @@ router.post('/', (req, res) => {
     addedBy: req.body.addedBy
   })
     .then(() => {
-      console.log('success')
-      res.send('success')
+      console.log('Successfully added item.')
+      Item.find({}).then(items => {
+        res.json(items)
+      })
     })
     .catch(err => {
       res.status(500)
@@ -23,16 +25,32 @@ router.post('/', (req, res) => {
 })
 // delete an item
 router.delete('/:id', (req, res) => {
-  Item.findOneAndRemove({ _id: req.params.id }).then(() => {
-    res.redirect('/')
-  })
+  Item.findOneAndRemove({ _id: req.params.id })
+    .then(() => {
+      console.log('Successfully deleted item.')
+      Item.find({}).then(items => {
+        res.json(items)
+      })
+    })
+    .catch(err => {
+      res.status(500)
+      res.send(err)
+    })
 })
 
 // edit an item
 router.put('/:id', (req, res) => {
-  Item.findOneAndUpdate({ _id: req.params.id }, req.body).then(() => {
-    res.redirect('/')
-  })
+  Item.findOneAndUpdate({ _id: req.params.id }, req.body)
+    .then(() => {
+      console.log('Successfully updated item.')
+      Item.find({}).then(items => {
+        res.json(items)
+      })
+    })
+    .catch(err => {
+      res.status(500)
+      res.send(err)
+    })
 })
 
 // get all items
